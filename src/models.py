@@ -10,31 +10,43 @@ Base = declarative_base()
 
 class Usuario(Base):
     __tablename__ = 'usuario'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(250))
     apellidos = Column(String(250))
-    contraseña = Column(String(250), nullable=False)
+    contraseña = Column(String(250))
     email = Column(String(250), nullable=False)
-    fecha_suscripcion = Column(String(250), nullable=False)
+    fecha_suscripcion = Column(String(250))
 
 class Planeta(Base):
     __tablename__ = 'planeta'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+  
     id = Column(Integer, primary_key=True)
-    name = Column(String(250))
+    name = Column(String(250),nullable=False)
     descripcion = Column(String(250))
     population = Column(String(250))
-    dimension = Column(String(250))
+    Diameter = Column(String(250))
     atmósfera = Column(String(250))
     temperatura = Column(String(250))
     superficie = Column(String(250))
+    Orbital_period =Column(String(250))
+    Surface_water =Column(String(250))
+
 
 class Vehicles(Base): 
      __tablename__ = 'vehicles'
      id = Column(Integer, primary_key=True)
+     name = Column(String(250),nullable=False)
+     Model = Column(String(250))
+     cargo_capacity= Column(String(250))
+     consumables=Column(String(250))
+     Cost_in_credits=Column(String(250))
+     Created= Column(String(250))
+     Manufacturer= Column(String(250))
+     Length= Column(String(250))
+     Max_atmosphering_speed= Column(String(250))
+     Passengers= Column(String(250))
+     Vehicle_classe= Column(String(250))
 
 
 class Personaje(Base):
@@ -56,8 +68,7 @@ class Personaje(Base):
 
 class Favoritos(Base):
     __tablename__ = 'favoritos'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+   
     id = Column(Integer, primary_key=True)
     usuario_id = Column(Integer, ForeignKey('usuario.id'))
     usuario = relationship(Usuario)
@@ -65,8 +76,6 @@ class Favoritos(Base):
 
 class FavoritosPersonaje(Base):
     __tablename__ = 'favorito_personaje'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     personaje_id = Column(Integer, ForeignKey('personaje.id')) 
     usuario = relationship(Personaje)
@@ -75,8 +84,7 @@ class FavoritosPersonaje(Base):
 
 class FavoritosPlaneta(Base):
     __tablename__ = 'favorito_planeta'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+
     id = Column(Integer, primary_key=True)
     planeta_id = Column(Integer, ForeignKey('planeta.id')) 
     planeta = relationship(Planeta)
@@ -85,8 +93,7 @@ class FavoritosPlaneta(Base):
 
 class Favoritosvehicle(Base):
     __tablename__ = 'favorito_vehicle'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+   
     id = Column(Integer, primary_key=True)
     vehicle_id = Column(Integer, ForeignKey('vehicles.id')) 
     vehicle = relationship(Vehicles)
